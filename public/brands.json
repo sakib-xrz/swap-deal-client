@@ -1,0 +1,26 @@
+[
+  {
+    "name": "acer",
+    "img": "https://i.ibb.co/Lzzdv8k/acer.png"
+  },
+  {
+    "name": "asus",
+    "img": "https://i.ibb.co/28D04wj/asus.png"
+  },
+  {
+    "name": "dell",
+    "img": "https://i.ibb.co/CtmxPvr/dell.png"
+  },
+  {
+    "name": "hp",
+    "img": "https://i.ibb.co/N3Pjv6S/hp.png"
+  },
+  {
+    "name": "lenovo",
+    "img": "https://i.ibb.co/5MjwSKm/lenevo.png"
+  },
+  {
+    "name": "samsung",
+    "img": "https://i.ibb.co/JkVLrwH/samsung.png"
+  }
+]

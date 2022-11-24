@@ -27,25 +27,27 @@ const Choose = () => {
       <div className="divider">
         <span className="text-3xl text-primary font-medium">Why Swap Deal</span>
       </div>
-      <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:py-10">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-5 md:py-10">
         {reasons.map((reason, i) => (
           <div
             key={i}
-            class="w-full max-w-md px-5 py-4 mt-16 bg-white rounded-lg shadow-lg"
+            className="px-5 py-4 mt-16 bg-white rounded-lg shadow-lg"
           >
-            <div class="flex justify-center -mt-16 md:justify-end">
-              <img
-                class="object-cover w-20 bg-white h-20 border-2 border-primary rounded-full"
-                alt="Testimonial avatar"
-                src={reason.img}
-              />
+            <div>
+              <div className="flex justify-center -mt-16 md:justify-end">
+                <img
+                  className="object-cover w-20 bg-white h-20 border-2 border-primary rounded-full"
+                  alt="Testimonial avatar"
+                  src={reason.img}
+                />
+              </div>
+
+              <h2 className="mt-2 text-2xl font-semibold md:mt-0 md:text-3xl">
+                {reason.heading}
+              </h2>
+
+              <p className="mt-2">{reason.text}</p>
             </div>
-
-            <h2 class="mt-2 text-2xl font-semibold md:mt-0 md:text-3xl">
-              {reason.heading}
-            </h2>
-
-            <p class="mt-2">{reason.text}</p>
           </div>
         ))}
         <div></div>

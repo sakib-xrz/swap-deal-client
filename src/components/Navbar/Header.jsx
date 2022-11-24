@@ -3,20 +3,21 @@ import { Link, NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { HiSearch } from "react-icons/hi";
-// import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../contexts/AuthProvider";
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const { user, logOut } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
-  // const signOut = () => {
-  //   logOut()
-  //     .then(() => {
-  //       toast.success("Logout successful", { duration: 2000 });
-  //     })
-  //     .catch((error) => {});
-  // };
+  const signOut = () => {
+    logout()
+      .then(() => {
+        toast.success("Logout successful", { duration: 3000 });
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="lg:sticky top-0 z-50">
@@ -137,11 +138,8 @@ const Header = () => {
                   </svg>
                 </label>
               </div>
-              {/* {user?.uid ? (
+              {user?.uid ? (
                 <div className="flex items-center justify-end">
-                  <h2 className="text-neutral font-medium text-sm md:text-lg">
-                    {user?.displayName}
-                  </h2>
                   <div className="dropdown dropdown-hover dropdown-end">
                     <label
                       tabIndex={0}
@@ -163,6 +161,9 @@ const Header = () => {
                       className="menu menu-compact dropdown-content p-2 shadow bg-white rounded-md w-52"
                     >
                       <li>
+                        <Link>{user?.displayName}</Link>
+                      </li>
+                      <li>
                         <Link>Profile</Link>
                       </li>
                       <li>
@@ -175,14 +176,14 @@ const Header = () => {
                 <li>
                   <Link
                     to="/login"
-                    className="inline-flex items-center justify-center h-12 px-6 font-semibold tracking-wide text-primary transition duration-200 rounded border border-primary shadow-md bg-white hover:bg-primary hover:text-white"
-                    aria-label="Appointment"
-                    title="Appointment"
+                    className="inline-flex items-center justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 rounded shadow-md bg-primary hover:text-white hover:bg-secondary"
+                    aria-label="Log In"
+                    title="Log In"
                   >
-                    Appointment
+                    Log In
                   </Link>
                 </li>
-              )} */}
+              )}
             </ul>
 
             {/* Mobile menu start here */}
@@ -211,7 +212,7 @@ const Header = () => {
                   />
                 </ul>
               </div>
-              {/* {user?.uid ? (
+              {user?.uid ? (
                 <div className="dropdown dropdown-hover dropdown-end">
                   <label
                     tabIndex={0}
@@ -245,7 +246,7 @@ const Header = () => {
                 </div>
               ) : (
                 <></>
-              )} */}
+              )}
               <button
                 aria-label="Open Menu"
                 title="Open Menu"
@@ -279,11 +280,7 @@ const Header = () => {
                           title="Code Easy"
                           className="inline-flex items-center"
                         >
-                          <img
-                            className="w-28 h-auto"
-                            src={Logo}
-                            alt=""
-                          />
+                          <img className="w-28 h-auto" src={Logo} alt="" />
                         </Link>
                       </div>
                       <div className="flex">
@@ -384,7 +381,7 @@ const Header = () => {
                             Blog
                           </NavLink>
                         </li>
-                        {/* {user?.uid ? (
+                        {user?.uid ? (
                           <></>
                         ) : (
                           <div>
@@ -392,14 +389,14 @@ const Header = () => {
                               <Link
                                 href="/"
                                 className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-white text-primary border border-primary hover:bg-primary hover:text-white"
-                                aria-label="Appointment"
-                                title="Appointment"
+                                aria-label="Log In"
+                                title="Log In"
                               >
-                                Appointment
+                                Log In
                               </Link>
                             </li>
                           </div>
-                        )} */}
+                        )}
                       </ul>
                     </nav>
                   </div>
