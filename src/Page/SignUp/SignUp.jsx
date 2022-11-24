@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authToken } from "../../components/Api/Auth";
@@ -9,6 +9,12 @@ const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  const [option, setOption] = useState("Buyer");
+  console.log(option);
+  const handleOption = (e) => {
+    setOption(e.target.value);
+  };
 
   const {
     createUser,
@@ -25,8 +31,6 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const imageFile = form.image.files[0];
-    const option = form.option.value;
-
 
     if (!imageFile) {
       toast("Please Select A Profile Picture");
@@ -221,7 +225,7 @@ const SignUp = () => {
                 </svg>
               </span>
               <select
-                name="option"
+                onChange={handleOption}
                 className="block appearance-none w-full px-10 py-3 text-gray-700 bg-white border rounded-md  focus:ring-opacity-40"
               >
                 <option className="text-gray-700">Buyer</option>

@@ -1,26 +1,32 @@
 [
   {
-    "name": "acer",
+    "category": "01",
+    "brand": "acer",
     "img": "https://i.ibb.co/Lzzdv8k/acer.png"
   },
   {
-    "name": "asus",
+    "category": "02",
+    "brand": "asus",
     "img": "https://i.ibb.co/28D04wj/asus.png"
   },
   {
-    "name": "dell",
+    "category": "03",
+    "brand": "dell",
     "img": "https://i.ibb.co/CtmxPvr/dell.png"
   },
   {
-    "name": "hp",
+    "category": "04",
+    "brand": "hp",
     "img": "https://i.ibb.co/N3Pjv6S/hp.png"
   },
   {
-    "name": "lenovo",
+    "category": "05",
+    "brand": "lenovo",
     "img": "https://i.ibb.co/5MjwSKm/lenevo.png"
   },
   {
-    "name": "samsung",
+    "category": "06",
+    "brand": "samsung",
     "img": "https://i.ibb.co/JkVLrwH/samsung.png"
   }
 ]
