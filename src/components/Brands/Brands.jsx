@@ -21,15 +21,17 @@ const Brands = () => {
     const productName = form.productName.value;
     const productPrice = form.productPrice.value;
 
-    const booking = {
+    const bookingData = {
       name,
       email,
       phone,
       location,
       productName,
-      productPrice
-    }
-    
+      productPrice,
+      productImg: booking?.img,
+      paymentStatus: "Unpaid",
+    };
+
     console.log(booking);
 
     fetch("http://localhost:5000/bookings", {
@@ -37,7 +39,7 @@ const Brands = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(booking),
+      body: JSON.stringify(bookingData),
     })
       .then((res) => res.json())
       .then((data) => {

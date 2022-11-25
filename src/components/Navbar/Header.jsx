@@ -26,8 +26,8 @@ const Header = () => {
             <div className="lg:col-span-3 col-span-7 flex justify-start items-center">
               <Link
                 to="/"
-                aria-label="Car Doctor"
-                title="Car Doctor"
+                aria-label="Swap Deal"
+                title="Swap Deal"
                 className="inline-flex items-center"
               >
                 <img className="" src={Logo} alt="" />
@@ -176,29 +176,6 @@ const Header = () => {
             {/* Mobile menu start here */}
 
             <div className="lg:hidden col-span-5 flex justify-end items-center">
-              {/* shopping cart */}
-              <button className="indicator">
-                <HiOutlineShoppingBag className="text-xl"></HiOutlineShoppingBag>
-                <span className="badge badge-sm indicator-item rounded-full text-xs border-none bg-primary -z-0">
-                  0
-                </span>
-              </button>
-              {/* search button */}
-              <div className="dropdown dropdown-end ml-5">
-                <label tabIndex={0} className="m-1 cursor-pointer">
-                  <HiSearch className="text-xl"></HiSearch>
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content bg-white shadow-xl rounded-lg"
-                >
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="input input-bordered bg-transparent focus:outline-none"
-                  />
-                </ul>
-              </div>
               {user?.uid ? (
                 <div className="dropdown dropdown-hover dropdown-end">
                   <label
@@ -231,6 +208,26 @@ const Header = () => {
               ) : (
                 <></>
               )}
+              <label
+                htmlFor="dashboard-drawer"
+                tabIndex={2}
+                className="p-2 ml-4 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </label>
               <button
                 aria-label="Open Menu"
                 title="Open Menu"

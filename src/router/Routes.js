@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Brands from "../components/Brands/Brands";
 import Error from "../components/Error/Error";
+import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
+import MyOrders from "../Page/Dashboard/MyOrders";
 import Home from "../Page/Home/Home";
 import Login from "../Page/Login/Login";
 import SignUp from "../Page/SignUp/SignUp";
@@ -38,6 +40,21 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/products/${params.category}`),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    errorElement: <Error></Error>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <MyOrders></MyOrders>,
       },
     ],
   },
