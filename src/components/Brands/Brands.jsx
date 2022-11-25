@@ -1,11 +1,53 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import verify from "../../assets/category/verified.png";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Brands = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   const products = useLoaderData();
   const [booking, setBooking] = useState(null);
-  console.log(booking);
+  const { user } = useContext(AuthContext);
+
+  const handleBooking = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const productName = form.productName.value;
+    const productPrice = form.productPrice.value;
+
+    const booking = {
+      name,
+      email,
+      phone,
+      productName,
+      productPrice
+    }
+    
+    console.log(booking);
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          setBooking(null);
+          toast.success("Booking confirmed");
+        } else {
+          toast.error(data.message);
+        }
+      });
+  };
+
   return (
     <div className="container mx-auto px-5 py-14">
       <div className="grid grid-cols-12 md:gap-10">
@@ -58,7 +100,7 @@ const Brands = () => {
                 <label
                   onClick={() => setBooking(product)}
                   htmlFor="booking-modal"
-                  className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-primary rounded hover:bg-secondary focus:bg-gray-400 focus:outline-none"
+                  className="cursor-pointer px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-primary rounded hover:bg-secondary focus:bg-gray-400 focus:outline-none"
                 >
                   Book Now
                 </label>
@@ -67,7 +109,7 @@ const Brands = () => {
           </div>
         ))}
       </div>
-      {/* modal */}
+
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
@@ -77,16 +119,70 @@ const Brands = () => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">
-            Congratulations random Internet user!
-          </h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
+          <form
+            onSubmit={handleBooking}
+            className="grid grid-cols-1 gap-2 mt-5"
+          >
+            <label className="ml-2 -mb-2" htmlFor="">
+              Laptop Price
+            </label>
+            <input
+              type="text"
+              disabled
+              value={booking?.name}
+              name="productName"
+              className="input w-full input-bordered "
+            />
+            <label className="ml-2 -mb-2" htmlFor="">
+              Laptop Price
+            </label>
+            <input
+              type="text"
+              disabled
+              value={booking?.resale}
+              name="productPrice"
+              className="input w-full input-bordered "
+            />
+            <label className="ml-2 -mb-2" htmlFor="">
+              Name
+            </label>
+            <input
+              name="name"
+              type="text"
+              defaultValue={user?.displayName}
+              disabled
+              placeholder="Your Name"
+              className="input w-full input-bordered"
+            />
+            <label className="ml-2 -mb-2" htmlFor="">
+              Email
+            </label>
+            <input
+              name="email"
+              type="email"
+              defaultValue={user?.email}
+              disabled
+              placeholder="Email Address"
+              className="input w-full input-bordered"
+            />
+            <label className="ml-2 -mb-2" htmlFor="">
+              Phone
+            </label>
+            <input
+              name="phone"
+              type="text"
+              placeholder="Phone Number"
+              className="input w-full input-bordered"
+            />
+            <br />
+            <input
+              className="btn btn-primary w-full"
+              type="submit"
+              value="Submit"
+            />
+          </form>
         </div>
       </div>
-      {/* modal */}
     </div>
   );
 };
