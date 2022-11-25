@@ -64,23 +64,23 @@ const Brands = () => {
             <div className="overflow-hidden bg-white rounded-lg shadow-lg">
               <div className="px-4 py-2 border-b-2">
                 <h1 className="text-2xl text-center font-bold uppercase">
-                  {product.name}
+                  {product?.name}
                 </h1>
               </div>
               <div className="relative">
                 <img
                   className="px-5 w-auto h-auto bg-white mt-2"
-                  src={product.img}
+                  src={product?.img}
                   alt=""
                 />
-                <h2 className="bg-primary text-white px-2 pt-[3px] pb-[5px] rounded-full inline text-xs absolute top-0 left-5">
-                  {product.brand}
+                <h2 className="bg-primary text-white px-2 pt-[3px] pb-[5px] rounded-full inline text-xs absolute top-0 left-5 capitalize">
+                  {product?.brand}
                 </h2>
               </div>
 
               <div className="border-t-2 px-4 pt-2 flex items-center justify-between">
                 <h2 className="text-lg font-medium ">
-                  {product.seller}{" "}
+                  {product?.seller}{" "}
                   <span>
                     {product.verified === true && (
                       <img className="h-5 w-5 inline" src={verify} alt="" />
@@ -88,12 +88,12 @@ const Brands = () => {
                   </span>
                 </h2>
                 <div>
-                  <p className="text-md font-normal ">{product.time}</p>
+                  <p className="text-md font-normal ">{product?.time}</p>
                 </div>
               </div>
               <div className="px-4 flex items-center justify-between">
                 <p className="text-md font-normal ">{product.location}</p>
-                <p className="text-md font-normal ">{product.use} use</p>
+                <p className="text-md font-normal ">{product.use} used</p>
               </div>
               <div className="flex items-center justify-between px-4 py-2">
                 <h1 className="text-lg font-bold">

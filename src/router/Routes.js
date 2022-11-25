@@ -3,6 +3,7 @@ import Brands from "../components/Brands/Brands";
 import Error from "../components/Error/Error";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
+import AddProduct from "../Page/Dashboard/AddProduct";
 import MyOrders from "../Page/Dashboard/MyOrders";
 import Home from "../Page/Home/Home";
 import Login from "../Page/Login/Login";
@@ -32,14 +33,14 @@ export const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "/category/:category",
+        path: "/category/:brand",
         element: (
           <PrivateRoute>
             <Brands></Brands>
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.category}`),
+          fetch(`http://localhost:5000/products/${params.brand}`),
       },
     ],
   },
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard/add-product",
+        element: <AddProduct></AddProduct>,
       },
     ],
   },

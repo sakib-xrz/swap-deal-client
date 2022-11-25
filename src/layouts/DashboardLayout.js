@@ -17,9 +17,15 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side ">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 bg-[#D1D5DB] w-64 text-base-content">
-            <li className="bg-primary rounded-md text-white">
+          <ul className="menu p-4 space-y-3 bg-[#D1D5DB] w-64 text-base-content">
+            <li className="text-primary rounded-md bg-white">
               <Link to="/dashboard">My Order</Link>
+            </li>
+            <li className="text-primary rounded-md bg-white">
+              <Link to="/dashboard/add-product">Add Product</Link>
+            </li>
+            <li className="text-primary rounded-md bg-white">
+              <Link to="/my-product">My Product</Link>
             </li>
             {/* {isAdmin && (
               <>

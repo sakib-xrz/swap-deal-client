@@ -1,4 +1,3 @@
-import { ThemeProvider } from "next-themes";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/Routes";
 import "./app.css";
@@ -10,10 +9,8 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <Toaster position="top-center" reverseOrder={false} />
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <Toaster position="top-center" reverseOrder={false} />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }
