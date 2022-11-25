@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authToken } from "../../components/Api/Auth";
+import { setUser } from "../../components/Api/SetUser";
 import SmallSpinner from "../../components/Spinner/SmallSpinner";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -39,6 +40,7 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        setUser(result.user, "Buyer");
         authToken(result.user);
         setLoading(false);
         toast.success("Log In Successful");

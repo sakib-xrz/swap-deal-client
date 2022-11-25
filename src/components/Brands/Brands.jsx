@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import verify from "../../assets/category/verified.png";
 import { AuthContext } from "../../contexts/AuthProvider";
+import Modal from "./Modal";
 
 const Brands = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -16,6 +17,7 @@ const Brands = () => {
     const name = form.name.value;
     const email = form.email.value;
     const phone = form.phone.value;
+    const location = form.location.value;
     const productName = form.productName.value;
     const productPrice = form.productPrice.value;
 
@@ -23,6 +25,7 @@ const Brands = () => {
       name,
       email,
       phone,
+      location,
       productName,
       productPrice
     }
@@ -110,79 +113,13 @@ const Brands = () => {
         ))}
       </div>
 
-      <input type="checkbox" id="booking-modal" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative">
-          <label
-            htmlFor="booking-modal"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
-          >
-            ✕
-          </label>
-          <form
-            onSubmit={handleBooking}
-            className="grid grid-cols-1 gap-2 mt-5"
-          >
-            <label className="ml-2 -mb-2" htmlFor="">
-              Laptop Price
-            </label>
-            <input
-              type="text"
-              disabled
-              value={booking?.name}
-              name="productName"
-              className="input w-full input-bordered "
-            />
-            <label className="ml-2 -mb-2" htmlFor="">
-              Laptop Price
-            </label>
-            <input
-              type="text"
-              disabled
-              value={booking?.resale}
-              name="productPrice"
-              className="input w-full input-bordered "
-            />
-            <label className="ml-2 -mb-2" htmlFor="">
-              Name
-            </label>
-            <input
-              name="name"
-              type="text"
-              defaultValue={user?.displayName}
-              disabled
-              placeholder="Your Name"
-              className="input w-full input-bordered"
-            />
-            <label className="ml-2 -mb-2" htmlFor="">
-              Email
-            </label>
-            <input
-              name="email"
-              type="email"
-              defaultValue={user?.email}
-              disabled
-              placeholder="Email Address"
-              className="input w-full input-bordered"
-            />
-            <label className="ml-2 -mb-2" htmlFor="">
-              Phone
-            </label>
-            <input
-              name="phone"
-              type="text"
-              placeholder="Phone Number"
-              className="input w-full input-bordered"
-            />
-            <br />
-            <input
-              className="btn btn-primary w-full"
-              type="submit"
-              value="Submit"
-            />
-          </form>
-        </div>
-      </div>
+      {booking && (
+        <Modal
+          user={user}
+          booking={booking}
+          handleBooking={handleBooking}
+        ></Modal>
+      )}
     </div>
   );
 };

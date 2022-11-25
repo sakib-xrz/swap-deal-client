@@ -3,8 +3,8 @@ export const authToken = (user) => {
     email: user.email,
   };
 
-  fetch(`http://localhost:5000/user/${user?.email}`, {
-    method: "PUT",
+  fetch("http://localhost:5000/jwt", {
+    method: "POST",
     headers: {
       "content-type": "application/json",
     },
@@ -12,7 +12,6 @@ export const authToken = (user) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      localStorage.setItem("swap-token", data.token);
+      localStorage.setItem("swap-token", data);
     });
 };

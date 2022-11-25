@@ -6,7 +6,6 @@ import { HiSearch } from "react-icons/hi";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
@@ -49,34 +48,24 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/about"
-                  aria-label="About"
-                  title="About"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-primary font-medium tracking-wide transition-colors duration-200 hover:text-primary"
-                      : "font-medium tracking-wide text-neutral transition-colors duration-200 hover:text-primary"
-                  }
-                >
-                  About
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/services"
-                  aria-label="Services"
-                  title="Services"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-primary font-medium tracking-wide transition-colors duration-200 hover:text-primary"
-                      : "font-medium tracking-wide text-neutral transition-colors duration-200 hover:text-primary"
-                  }
-                >
-                  Services
-                </NavLink>
-              </li>
+              {user?.uid ? (
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    aria-label="Dashboard"
+                    title="Dashboard"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary font-medium tracking-wide transition-colors duration-200 hover:text-primary"
+                        : "font-medium tracking-wide text-neutral transition-colors duration-200 hover:text-primary"
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              ) : (
+                <></>
+              )}
               <li>
                 <NavLink
                   to="/blog"
@@ -163,9 +152,7 @@ const Header = () => {
                       <li>
                         <Link>{user?.displayName}</Link>
                       </li>
-                      <li>
-                        <Link>Profile</Link>
-                      </li>
+
                       <li>
                         <Link onClick={signOut}>Logout</Link>
                       </li>
@@ -235,9 +222,6 @@ const Header = () => {
                   >
                     <li>
                       <Link>{user?.displayName}</Link>
-                    </li>
-                    <li>
-                      <Link>Profile</Link>
                     </li>
                     <li>
                       <Link onClick={signOut}>Logout</Link>
@@ -339,34 +323,24 @@ const Header = () => {
                             Home
                           </NavLink>
                         </li>
-                        <li>
-                          <NavLink
-                            to="/about"
-                            aria-label="About"
-                            title="About"
-                            className={({ isActive }) =>
-                              isActive
-                                ? "font-medium tracking-wide text-primary transition-colors duration-200 hover:text-primary"
-                                : "font-medium tracking-wide text-neutral transition-colors duration-200 hover:text-primary"
-                            }
-                          >
-                            About
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/services"
-                            aria-label="Services"
-                            title="Services"
-                            className={({ isActive }) =>
-                              isActive
-                                ? "font-medium tracking-wide text-primary transition-colors duration-200 hover:text-primary"
-                                : "font-medium tracking-wide text-neutral transition-colors duration-200 hover:text-primary"
-                            }
-                          >
-                            Services
-                          </NavLink>
-                        </li>
+                        {user?.uid ? (
+                          <li>
+                            <NavLink
+                              to="/dashboard"
+                              aria-label="Dashboard"
+                              title="Dashboard"
+                              className={({ isActive }) =>
+                                isActive
+                                  ? "font-medium tracking-wide text-primary transition-colors duration-200 hover:text-primary"
+                                  : "font-medium tracking-wide text-neutral transition-colors duration-200 hover:text-primary"
+                              }
+                            >
+                              Dashboard
+                            </NavLink>
+                          </li>
+                        ) : (
+                          <></>
+                        )}
                         <li>
                           <NavLink
                             to="/blog"
@@ -388,7 +362,7 @@ const Header = () => {
                             <li>
                               <Link
                                 href="/"
-                                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-white text-primary border border-primary hover:bg-primary hover:text-white"
+                                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-primary text-white border border-primary hover:bg-primary hover:text-white"
                                 aria-label="Log In"
                                 title="Log In"
                               >

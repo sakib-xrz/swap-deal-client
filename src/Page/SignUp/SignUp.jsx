@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authToken } from "../../components/Api/Auth";
+import { setUser } from "../../components/Api/SetUser";
 import SmallSpinner from "../../components/Spinner/SmallSpinner";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -11,7 +12,7 @@ const SignUp = () => {
   const from = location.state?.from?.pathname || "/";
 
   const [option, setOption] = useState("Buyer");
-  console.log(option);
+
   const handleOption = (e) => {
     setOption(e.target.value);
   };
@@ -40,7 +41,6 @@ const SignUp = () => {
     const formData = new FormData();
     setLoading(true);
     formData.append("image", imageFile);
-    // console.log(formData);
 
     const imgAPI = "6d366223bef33de9baf4dac3d35fbd81";
     const url = `https://api.imgbb.com/1/upload?key=${imgAPI}`;
@@ -56,10 +56,11 @@ const SignUp = () => {
         createUser(email, password)
           .then((result) => {
             console.log(result.user);
-            authToken(result.user);
             updateUserProfile(name, image)
               .then(() => {
+                setUser(result.user, option);
                 setLoading(false);
+                authToken(result.user);
                 form.reset();
                 toast.success("Account Create Successfully", {
                   duration: 3000,
@@ -83,6 +84,7 @@ const SignUp = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        setUser(result.user, "Buyer");
         authToken(result.user);
         setLoading(false);
         toast.success("Log In Successful");
