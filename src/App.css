@@ -1,0 +1,4 @@
+.menu :where(li:not(.menu-title):not(:empty)) > :where(*:not(ul):focus){
+    background-color: #525DA9;
+    color: #ffffff;
+}

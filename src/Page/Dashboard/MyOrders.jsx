@@ -6,7 +6,7 @@ const MyOrders = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   const { user, logout, loading, setLoading } = useContext(AuthContext);
   const [myOrders, setMyOrders] = useState([]);
-  console.log(myOrders);
+
   useEffect(() => {
     fetch(`http://localhost:5000/bookings/my-bookings?email=${user?.email}`, {
       headers: {
