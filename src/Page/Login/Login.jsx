@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { authToken } from "../../components/Api/Auth";
 import { setUser } from "../../components/Api/SetUser";
 import SmallSpinner from "../../components/Spinner/SmallSpinner";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -27,7 +26,6 @@ const Login = () => {
         setLoading(false);
         form.reset();
         toast.success("Log In Successful");
-        navigate(from, { replace: true });
       })
       .catch((err) => {
         setLoading(false);
@@ -44,12 +42,22 @@ const Login = () => {
         authToken(result.user);
         setLoading(false);
         toast.success("Log In Successful");
-        navigate(from, { replace: true });
       })
       .catch((err) => {
         setLoading(false);
         toast.error(err.message);
         console.error(err);
+      });
+  };
+
+  const authToken = (user) => {
+    fetch(`http://localhost:5000/jwt?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("swap-token", data.accessToken);
+          navigate(from, { replace: true });
+        }
       });
   };
 

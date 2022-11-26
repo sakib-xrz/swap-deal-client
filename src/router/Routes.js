@@ -5,6 +5,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
 import AddProduct from "../Page/Dashboard/AddProduct";
 import MyOrders from "../Page/Dashboard/MyOrders";
+import MyProduct from "../Page/Dashboard/MyProduct";
 import Home from "../Page/Home/Home";
 import Login from "../Page/Login/Login";
 import SignUp from "../Page/SignUp/SignUp";
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/add-product",
         element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/my-product",
+        element: <MyProduct></MyProduct>,
       },
     ],
   },

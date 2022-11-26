@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const AddProduct = () => {
   const [brand, setBrand] = useState();
   const [condition, setCondition] = useState();
-  const { loading, setLoading } = useContext(AuthContext);
+  const { user, setLoading } = useContext(AuthContext);
 
   const handleBrand = (e) => {
     setBrand(e.target.value);
@@ -52,7 +52,7 @@ const AddProduct = () => {
     }
 
     const formData = new FormData();
-    // setLoading(true);
+    setLoading(true);
     formData.append("image", imageFile);
 
     const imgAPI = "6d366223bef33de9baf4dac3d35fbd81";
@@ -65,20 +65,40 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         const img = data.data.display_url;
-        // console.log(
-        //   category,
-        //   name,
-        //   img,
-        //   location,
-        //   resale,
-        //   original,
-        //   use,
-        //   time,
-        //   seller,
-        //   phone,
-        //   currentCondition,
-        //   description
-        // );
+
+        const newProduct = {
+          brand: category,
+          name,
+          img,
+          location,
+          resale,
+          original,
+          use,
+          time,
+          seller,
+          phone,
+          currentCondition,
+          description,
+          email: user?.email,
+          verified: false,
+          isSold: false,
+        };
+
+        fetch("http://localhost:5000/products", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newProduct),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              setLoading(false);
+              toast.success("Product Added Successfully");
+              form.reset();
+            }
+          });
       })
       .catch((err) => console.error(err));
   };
@@ -129,7 +149,7 @@ const AddProduct = () => {
 
             <div>
               <label htmlFor="file" className="text-gray-700">
-                Upload a image
+                Upload a image <small className="text-xs">(500px*500px)</small>
               </label>
               <input
                 id="file"
