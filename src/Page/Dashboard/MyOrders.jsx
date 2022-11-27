@@ -5,12 +5,13 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const MyOrders = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  const { user, logout, loading, setLoading} = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [myOrders, setMyOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user?.email) {
-      return
+      return;
     }
     fetch(`http://localhost:5000/bookings/my-bookings?email=${user?.email}`, {
       headers: {
@@ -31,8 +32,29 @@ const MyOrders = () => {
   }, [user?.email, logout, setLoading]);
 
   if (loading) {
-    return <Spinner></Spinner>
+    return <Spinner></Spinner>;
   }
+
+  if (myOrders.length === 0) {
+    return (
+      <div className="p-10 flex justify-center">
+        <div className="bg-white p-24 rounded-md shadow-lg">
+          <h2 className="text-3xl text-center font-bold">
+            No Order Available
+          </h2>
+          <div className="w-full flex justify-center mt-5">
+            <Link
+              className=" text-white btn btn-primary btn-sm mx-auto"
+              to={"/"}
+            >
+              Book A Product
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-5">
       <div className="overflow-x-auto w-full">

@@ -3,13 +3,15 @@ import { useContext } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import SmallSpinner from "../../components/Spinner/SmallSpinner";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const AddProduct = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [brand, setBrand] = useState();
   const [condition, setCondition] = useState();
-  const { user, setLoading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
   const handleBrand = (e) => {
     setBrand(e.target.value);
@@ -35,7 +37,7 @@ const AddProduct = () => {
     const original = form.original.value;
     const use = form.use.value;
     const time = new Date().toLocaleDateString();
-    const seller = form.sellerName.value;
+    const seller = user?.displayName;
     const phone = form.phone.value;
     const currentCondition = condition;
 
@@ -83,7 +85,6 @@ const AddProduct = () => {
           description,
           email: user?.email,
           verified: false,
-          isSold: false,
         };
 
         fetch("http://localhost:5000/products", {
@@ -99,7 +100,9 @@ const AddProduct = () => {
               setLoading(false);
               toast.success("Product Added Successfully");
               form.reset();
-              navigate("/dashboard/my-product");
+              setTimeout(() => {
+                navigate("/dashboard/my-product");
+              }, 2000);
             }
           });
       })
@@ -225,7 +228,8 @@ const AddProduct = () => {
               </label>
               <input
                 required
-                placeholder="Md Sakibul Islam"
+                defaultValue={user?.displayName}
+                readOnly
                 name="sellerName"
                 id="name"
                 type="text"
@@ -283,7 +287,7 @@ const AddProduct = () => {
               type="submit"
               className="px-8 py-2.5 w-full leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondary focus:outline-none focus:bg-gray-600"
             >
-              Add Product
+              {loading ? <SmallSpinner></SmallSpinner> : "Add Product"}
             </button>
           </div>
         </form>

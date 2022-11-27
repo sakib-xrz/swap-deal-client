@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../contexts/AuthProvider";
-import deleteBtn from "../../assets/choose/delete.png"
+import deleteBtn from "../../assets/choose/delete.png";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import Spinner from "../../components/Spinner/Spinner";
 
 const MyProduct = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-
   const { user, logout } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
 
   const { data: myProduct = [], refetch } = useQuery({
     queryKey: ["myProduct", user?.email],
@@ -22,10 +25,64 @@ const MyProduct = () => {
       if (res.status === 401 || res.status === 403) {
         return logout();
       }
+      setLoading(false);
       const data = await res.json();
       return data;
     },
   });
+
+  const handleDelete = (id) => {
+    const proceed = window.confirm("Do you want to delete this product?");
+    if (proceed) {
+      fetch(`http://localhost:5000/products/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            refetch();
+            toast.success("Product deleted successfully");
+          }
+        });
+    }
+  };
+
+  const handleAdvertise = (id) => {
+    fetch(`http://localhost:5000/products/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          refetch();
+          toast.success("Product Advertise successfully");
+        }
+      });
+  };
+
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
+
+  if (myProduct.length === 0) {
+    return (
+      <div className="p-10 flex justify-center">
+        <div className="bg-white p-24 rounded-md shadow-lg">
+          <h2 className="text-3xl text-center font-bold">
+            No Product Available
+          </h2>
+          <div className="w-full flex justify-center mt-5">
+            <Link
+              className=" text-white btn btn-primary btn-sm mx-auto"
+              to={"/dashboard/add-product"}
+            >
+              Add Product
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-5">
@@ -70,18 +127,44 @@ const MyProduct = () => {
                 <td>{product?.location}</td>
                 <td>BDT {product?.resale}</td>
                 <th>
-                  <div className="badge badge-ghost p-3 text-white badge-sm bg-red-500">
-                    {product?.isSold ? "Sold" : "Unsold"}
-                  </div>
+                  {product?.paid === true ? (
+                    <div className="badge badge-ghost p-3 text-white badge-sm bg-green-500">
+                      Sold
+                    </div>
+                  ) : (
+                    <div className="badge badge-ghost p-3 text-white badge-sm bg-red-500">
+                      Unsold
+                    </div>
+                  )}
                 </th>
                 <th>
-                  <div className="badge cursor-pointer badge-ghost p-3 text-white badge-sm bg-blue-500">
-                    Advertise Now
-                  </div>
+                  {product?.paid === true ? (
+                    <div className="badge badge-ghost p-3 text-white badge-sm bg-blue-500 bg-opacity-40 cursor-not-allowed">
+                      Advertise Now
+                    </div>
+                  ) : product?.isAdvertise === true ? (
+                    <div
+                      className="badge badge-ghost p-3 text-white badge-sm bg-green-500"
+                    >
+                      Advertised
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => handleAdvertise(product._id)}
+                      className="badge cursor-pointer badge-ghost p-3 text-white badge-sm bg-blue-500"
+                    >
+                      Advertise Now
+                    </div>
+                  )}
                 </th>
                 <th>
                   <div className="w-full flex justify-center">
-                    <img className="w-8 h-8 cursor-pointer" src={deleteBtn} alt="" />
+                    <img
+                      onClick={() => handleDelete(product._id)}
+                      className="w-8 h-8 cursor-pointer"
+                      src={deleteBtn}
+                      alt=""
+                    />
                   </div>
                 </th>
                 <td className="hidden"></td>
