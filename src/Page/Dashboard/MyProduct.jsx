@@ -1,51 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../contexts/AuthProvider";
+import deleteBtn from "../../assets/choose/delete.png"
 
 const MyProduct = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-  const { user, logout, setLoading } = useContext(AuthContext);
-  const [myProduct, setMyProduct] = useState([]);
-  // console.log(myProduct);
+  const { user, logout } = useContext(AuthContext);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/products?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("swap-token")}`,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        if (res.status === 401 || res.status === 403) {
-          return logout();
+  const { data: myProduct = [], refetch } = useQuery({
+    queryKey: ["myProduct", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/products?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("swap-token")}`,
+          },
         }
-        return res.json();
-      })
-      .then((data) => {
-        setLoading(false);
-        setMyProduct(data);
-      });
-  }, [user?.email, logout, setLoading]);
-
-  // const { data: myProduct = [], refetch } = useQuery({
-  //   queryKey: ["myProduct", user?.email],
-  //   queryFn: async () => {
-  //     const res = await fetch(
-  //       `http://localhost:5000/products?email=${user?.email}`,
-  //       {
-  //         headers: {
-  //           authorization: `Bearer ${localStorage.getItem("swap-token")}`,
-  //         },
-  //       }
-  //     );
-  //     if (res.status === 401 || res.status === 403) {
-  //       return logout();
-  //     }
-  //     const data = await res.json();
-  //     return data;
-  //   },
-  // });
+      );
+      if (res.status === 401 || res.status === 403) {
+        return logout();
+      }
+      const data = await res.json();
+      return data;
+    },
+  });
 
   return (
     <div className="p-5">
@@ -60,6 +40,7 @@ const MyProduct = () => {
               <th>Price</th>
               <th>Product Status</th>
               <th>Advertise</th>
+              <th>Action</th>
               <th className="hidden"></th>
             </tr>
           </thead>
@@ -96,6 +77,11 @@ const MyProduct = () => {
                 <th>
                   <div className="badge cursor-pointer badge-ghost p-3 text-white badge-sm bg-blue-500">
                     Advertise Now
+                  </div>
+                </th>
+                <th>
+                  <div className="w-full flex justify-center">
+                    <img className="w-8 h-8 cursor-pointer" src={deleteBtn} alt="" />
                   </div>
                 </th>
                 <td className="hidden"></td>

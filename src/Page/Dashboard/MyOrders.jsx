@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const MyOrders = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  const { user, logout, loading, setLoading } = useContext(AuthContext);
+  const { user, logout, loading, setLoading} = useContext(AuthContext);
   const [myOrders, setMyOrders] = useState([]);
 
   useEffect(() => {
@@ -43,7 +44,6 @@ const MyOrders = () => {
               <th>Buyer</th>
               <th>Meeting Location</th>
               <th>Price</th>
-              <th>Payment Status</th>
               <th>Payment</th>
               <th className="hidden"></th>
             </tr>
@@ -74,14 +74,18 @@ const MyOrders = () => {
                 <td>{order?.location}</td>
                 <td>BDT {order?.productPrice}</td>
                 <th>
-                  <div className="badge badge-ghost p-3 text-white badge-sm bg-red-500">
-                    {order?.paymentStatus}
-                  </div>
-                </th>
-                <th>
-                  <div className="badge cursor-pointer badge-ghost p-3 text-white badge-sm bg-blue-500">
-                    Pay Now
-                  </div>
+                  {order?.paid === true ? (
+                    <div className="badge badge-ghost p-3 text-white badge-sm bg-green-500">
+                      Paid
+                    </div>
+                  ) : (
+                    <Link
+                      to={`/dashboard/payment/${order?._id}`}
+                      className="badge cursor-pointer badge-ghost p-3 text-white badge-sm bg-blue-500"
+                    >
+                      Pay Now
+                    </Link>
+                  )}
                 </th>
                 <td className="hidden"></td>
               </tr>

@@ -29,7 +29,6 @@ const Brands = () => {
       productName,
       productPrice,
       productImg: booking?.img,
-      paymentStatus: "Unpaid",
     };
 
     console.log(booking);

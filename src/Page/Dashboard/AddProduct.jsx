@@ -2,9 +2,11 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const AddProduct = () => {
+   const navigate = useNavigate();
   const [brand, setBrand] = useState();
   const [condition, setCondition] = useState();
   const { user, setLoading } = useContext(AuthContext);
@@ -97,6 +99,7 @@ const AddProduct = () => {
               setLoading(false);
               toast.success("Product Added Successfully");
               form.reset();
+              navigate("/dashboard/my-product");
             }
           });
       })
