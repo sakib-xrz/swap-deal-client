@@ -1,8 +1,23 @@
 import React from "react";
+import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../components/Navbar/Header";
+import { AuthContext } from "../contexts/AuthProvider";
+import useAdmin from "../hooks/useAdmin";
+import useBuyer from "../hooks/useBuyer";
+import useSeller from "../hooks/useSeller";
 
 const DashboardLayout = () => {
+  const { user } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
+  console.log("admin", isAdmin);
+
+  const [isBuyer] = useBuyer(user?.email);
+  console.log("buyer", isBuyer);
+
+  const [isSeller] = useSeller(user?.email);
+  console.log("seller", isSeller);
+
   return (
     <div>
       <Header></Header>
@@ -18,15 +33,24 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 space-y-3 bg-[#D1D5DB] w-64 text-base-content">
-            <li className="text-primary rounded-md bg-white">
-              <Link to="/dashboard">My Order</Link>
-            </li>
-            <li className="text-primary rounded-md bg-white">
-              <Link to="/dashboard/add-product">Add Product</Link>
-            </li>
-            <li className="text-primary rounded-md bg-white">
-              <Link to="/dashboard/my-product">My Product</Link>
-            </li>
+            {isBuyer && (
+              <>
+                <li className="text-primary rounded-md bg-white">
+                  <Link to="/dashboard/my-orders">My Order</Link>
+                </li>
+              </>
+            )}
+            {isSeller && (
+              <>
+                <li className="text-primary rounded-md bg-white">
+                  <Link to="/dashboard/add-product">Add Product</Link>
+                </li>
+                <li className="text-primary rounded-md bg-white">
+                  <Link to="/dashboard/my-product">My Product</Link>
+                </li>
+              </>
+            )}
+
             {/* {isAdmin && (
               <>
                 <li>

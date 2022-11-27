@@ -4,6 +4,7 @@ import Error from "../components/Error/Error";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
 import AddProduct from "../Page/Dashboard/AddProduct";
+import Default from "../Page/Dashboard/Default";
 import MyOrders from "../Page/Dashboard/MyOrders";
 import MyProduct from "../Page/Dashboard/MyProduct";
 import Payment from "../Page/Dashboard/Payment";
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
+        element: <Default></Default>,
+      },
+      {
+        path: "/dashboard/my-orders",
         element: <MyOrders></MyOrders>,
       },
       {

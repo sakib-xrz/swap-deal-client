@@ -3,15 +3,19 @@ import axios from "axios";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Spinner from "../Spinner/Spinner";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Category = () => {
   const [brands, setBrands] = useState([]);
-  const { loading, setLoading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
 
-  axios.get("http://localhost:5000/brands").then(function (response) {
-    setLoading(false);
-    setBrands(response.data);
-  });
+  useEffect(() => {
+    axios.get("http://localhost:5000/brands").then(function (response) {
+      console.log(response);
+      setBrands(response.data);
+    });
+  }, []);
+
 
   return (
     <div className="container mx-auto px-5 py-10">
