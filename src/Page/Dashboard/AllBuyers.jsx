@@ -10,7 +10,9 @@ const AllBuyers = () => {
   const { data: allBuyers = [], refetch } = useQuery({
     queryKey: ["allBuyers"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/user/all-buyers`);
+      const res = await fetch(
+        `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/user/all-buyers`
+      );
       setLoading(false);
       const data = await res.json();
       return data;
@@ -20,9 +22,12 @@ const AllBuyers = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Do you want to delete this buyer?");
     if (proceed) {
-      fetch(`http://localhost:5000/user/all-buyers/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/user/all-buyers/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {

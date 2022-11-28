@@ -51,7 +51,7 @@ const Login = () => {
   };
 
   const authToken = (user) => {
-    fetch(`http://localhost:5000/jwt`, {
+    fetch(`https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/jwt`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

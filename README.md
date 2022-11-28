@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+## `WebSite Name : Swap Deal`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## `Live Link`
+(https://swap-deal-bd.web.app/)
 
-## Available Scripts
+Swap Deal is an used products resale market website.
 
-In the project directory, you can run:
 
-### `npm start`
+ ## `Features and Functionality`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+⚫️ A complete website with dedicated admin panel also google login feature
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+⚫️ There is a dashboard to manage admin panel and services.
 
-### `npm test`
+⚫️ Used React-Router Advance Concepts And Protected Routes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+⚫️ Used Firebase For Authentication.
 
-### `npm run build`
+⚫️ You can Login with Google.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+⚫️ Used Environment Variables To Hide Some Secret Data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+⚫️ Used Tailwind CSS Framework.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+⚫️ Used React Icons for show icons.
 
-### `npm run eject`
+⚫️ Used React-To-Pdf Package to generate and download PDF.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ ## `Frameworks, Tools , Libraries , Package We Used In This Website`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ `React`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ `React-Router-Dom V6`
 
-## Learn More
+ `Tailwind`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ `Firebase`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ `Express Js`
 
-### Code Splitting
+ `MongoDb`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

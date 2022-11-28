@@ -7,13 +7,16 @@ export const setUser = (user, accountType) => {
     verified: false,
   };
 
-  fetch(`http://localhost:5000/user/${user?.email}`, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(setUser),
-  })
+  fetch(
+    `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/user/${user?.email}`,
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(setUser),
+    }
+  )
     .then((res) => res.json())
     .then((data) => console.log(data));
 };

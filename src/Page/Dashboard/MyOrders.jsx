@@ -13,11 +13,14 @@ const MyOrders = () => {
     if (!user?.email) {
       return;
     }
-    fetch(`http://localhost:5000/bookings/my-bookings?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("swap-token")}`,
-      },
-    })
+    fetch(
+      `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/bookings/my-bookings?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("swap-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logout();
@@ -39,9 +42,7 @@ const MyOrders = () => {
     return (
       <div className="p-10 flex justify-center">
         <div className="bg-white p-24 rounded-md shadow-lg">
-          <h2 className="text-3xl text-center font-bold">
-            No Order Available
-          </h2>
+          <h2 className="text-3xl text-center font-bold">No Order Available</h2>
           <div className="w-full flex justify-center mt-5">
             <Link
               className=" text-white btn btn-primary btn-sm mx-auto"

@@ -10,12 +10,13 @@ const Category = () => {
   const { loading } = useContext(AuthContext);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/brands").then(function (response) {
-      console.log(response);
-      setBrands(response.data);
-    });
+    axios
+      .get("https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/brands")
+      .then(function (response) {
+        console.log(response);
+        setBrands(response.data);
+      });
   }, []);
-
 
   return (
     <div className="container mx-auto px-5 py-10">

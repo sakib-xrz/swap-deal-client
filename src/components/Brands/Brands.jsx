@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import verify from "../../assets/category/verified.png";
 import { AuthContext } from "../../contexts/AuthProvider";
-import {MdReportGmailerrorred} from "react-icons/md"
+import { MdReportGmailerrorred } from "react-icons/md";
 import Modal from "./Modal";
 
 const Brands = () => {
@@ -35,7 +35,7 @@ const Brands = () => {
 
     console.log(booking);
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -55,13 +55,16 @@ const Brands = () => {
   };
 
   const handleReport = (product) => {
-    fetch(`http://localhost:5000/reported-items`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
+    fetch(
+      `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/reported-items`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -71,7 +74,7 @@ const Brands = () => {
           toast.error(data.message);
         }
       });
-  }
+  };
 
   return (
     <div className="container mx-auto px-5 py-14">

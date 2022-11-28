@@ -15,7 +15,7 @@ const MyProduct = () => {
     queryKey: ["myProduct", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/products?email=${user?.email}`,
+        `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/products?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("swap-token")}`,
@@ -34,9 +34,12 @@ const MyProduct = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Do you want to delete this product?");
     if (proceed) {
-      fetch(`http://localhost:5000/products/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -48,9 +51,12 @@ const MyProduct = () => {
   };
 
   const handleAdvertise = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/products/${id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -143,9 +149,7 @@ const MyProduct = () => {
                       Advertise Now
                     </div>
                   ) : product?.isAdvertise === true ? (
-                    <div
-                      className="badge badge-ghost p-3 text-white badge-sm bg-green-500"
-                    >
+                    <div className="badge badge-ghost p-3 text-white badge-sm bg-green-500">
                       Advertised
                     </div>
                   ) : (

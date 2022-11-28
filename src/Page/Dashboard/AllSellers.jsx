@@ -10,7 +10,9 @@ const AllSellers = () => {
   const { data: allSellers = [], refetch } = useQuery({
     queryKey: ["allSellers"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/user/all-sellers`);
+      const res = await fetch(
+        `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/user/all-sellers`
+      );
       setLoading(false);
       const data = await res.json();
       return data;
@@ -20,9 +22,12 @@ const AllSellers = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Do you want to delete this seller?");
     if (proceed) {
-      fetch(`http://localhost:5000/user/all-sellers/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/user/all-sellers/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -34,9 +39,12 @@ const AllSellers = () => {
   };
 
   const handleVerify = (id) => {
-    fetch(`http://localhost:5000/user/all-sellers/${id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/user/all-sellers/${id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

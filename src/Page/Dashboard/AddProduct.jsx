@@ -87,13 +87,16 @@ const AddProduct = () => {
           email: user?.email,
         };
 
-        fetch("http://localhost:5000/products", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newProduct),
-        })
+        fetch(
+          "https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/products",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(newProduct),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {

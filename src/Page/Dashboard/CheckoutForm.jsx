@@ -10,7 +10,7 @@ const CheckoutForm = ({
   success,
   setSuccess,
   transactionId,
-  setTransactionId
+  setTransactionId,
 }) => {
   const { _id, productName } = paymentProduct;
   const { user } = useContext(AuthContext);
@@ -20,11 +20,14 @@ const CheckoutForm = ({
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ productPrice }),
-    })
+    fetch(
+      "https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productPrice }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [productPrice]);
@@ -80,14 +83,17 @@ const CheckoutForm = ({
         bookingId: _id,
         productName,
       };
-      fetch("http://localhost:5000/payments", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("swap-token")}`,
-        },
-        body: JSON.stringify(payment),
-      })
+      fetch(
+        "https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/payments",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${localStorage.getItem("swap-token")}`,
+          },
+          body: JSON.stringify(payment),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {

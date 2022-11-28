@@ -53,7 +53,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.brand}`),
+          fetch(
+            `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/products/${params.brand}`
+          ),
       },
     ],
   },
@@ -78,7 +80,9 @@ export const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/my-bookings/${params.id}`),
+          fetch(
+            `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/bookings/my-bookings/${params.id}`
+          ),
       },
       {
         path: "/dashboard/add-product",
