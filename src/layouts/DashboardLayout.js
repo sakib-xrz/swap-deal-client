@@ -40,6 +40,7 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
+
             {isSeller && (
               <>
                 <li className="text-primary rounded-md bg-white">
@@ -51,19 +52,19 @@ const DashboardLayout = () => {
               </>
             )}
 
-            {/* {isAdmin && (
+            {isAdmin && (
               <>
-                <li>
-                  <Link to="/dashboard/allusers">All users</Link>
+                <li className="text-primary rounded-md bg-white">
+                  <Link to="/dashboard/all-buyers">All Buyers</Link>
                 </li>
-                <li>
-                  <Link to="/dashboard/adddoctor">Add A Doctor</Link>
+                <li className="text-primary rounded-md bg-white">
+                  <Link to="/dashboard/all-sellers">All Sellers</Link>
                 </li>
-                <li>
-                  <Link to="/dashboard/managedoctors">Manage Doctors</Link>
+                <li className="text-primary rounded-md bg-white">
+                  <Link to="/dashboard/reported-items">Reported Items</Link>
                 </li>
               </>
-            )} */}
+            )}
           </ul>
         </div>
       </div>
