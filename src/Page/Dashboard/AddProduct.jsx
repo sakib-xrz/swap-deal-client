@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -84,7 +85,7 @@ const AddProduct = () => {
           currentCondition,
           description,
           email: user?.email,
-          verified: false,
+          verified: seller?.verified,
         };
 
         fetch("http://localhost:5000/products", {

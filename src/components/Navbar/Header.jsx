@@ -358,7 +358,7 @@ const Header = () => {
                           <div>
                             <li>
                               <Link
-                                href="/"
+                                to="/login"
                                 className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-primary text-white border border-primary hover:bg-primary hover:text-white"
                                 aria-label="Log In"
                                 title="Log In"

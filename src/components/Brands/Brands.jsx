@@ -8,6 +8,7 @@ import Modal from "./Modal";
 const Brands = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   const products = useLoaderData();
+  console.log(products);
   const [booking, setBooking] = useState(null);
   const { user } = useContext(AuthContext);
 

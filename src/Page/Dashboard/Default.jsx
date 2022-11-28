@@ -2,6 +2,7 @@ import React from 'react';
 import dashboard from "../../assets/choose/dashboard.svg";
 
 const Default = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     return (
       <div className="p-10 w-full flex flex-col items-center">
         <div className="">
