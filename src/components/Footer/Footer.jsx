@@ -13,12 +13,10 @@ const Footer = () => {
           <div className="text-left">
             <img className="mr-auto" src={Logo} alt="" />
             <p>
-              <span className="text-xl font-semibold">Swap Deal</span>
+              <span className="text-xl font-semibold">Swap Deal LTD</span>
               <br />
               <span className="font-thin">
-                Edwin Diaz is a software and web <br />
-                technologies engineer, a life coach <br />
-                trainer who is also a serial.
+                
               </span>
             </p>
             <div className="flex text-2xl pt-2">
@@ -43,7 +41,8 @@ const Footer = () => {
           <div>
             <span className="font-semibold text-lg md:mb-5">Company</span>
             <a href="/" className="link link-hover font-thin">
-              Why Swap De        </a>
+              Why Swap Deal 
+            </a>
             <a href="/" className="link link-hover font-thin">
               About
             </a>

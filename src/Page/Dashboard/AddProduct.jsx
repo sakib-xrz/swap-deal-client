@@ -60,7 +60,7 @@ const AddProduct = () => {
     setLoading(true);
     formData.append("image", imageFile);
 
-    const imgAPI = "6d366223bef33de9baf4dac3d35fbd81";
+    const imgAPI = process.env.REACT_APP_IMG_API;
     const url = `https://api.imgbb.com/1/upload?key=${imgAPI}`;
 
     fetch(url, {
@@ -85,7 +85,6 @@ const AddProduct = () => {
           currentCondition,
           description,
           email: user?.email,
-          verified: seller?.verified,
         };
 
         fetch("http://localhost:5000/products", {

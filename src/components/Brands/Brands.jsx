@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import verify from "../../assets/category/verified.png";
 import { AuthContext } from "../../contexts/AuthProvider";
+import {MdReportGmailerrorred} from "react-icons/md"
 import Modal from "./Modal";
 
 const Brands = () => {
@@ -53,6 +54,25 @@ const Brands = () => {
       });
   };
 
+  const handleReport = (product) => {
+    fetch(`http://localhost:5000/reported-items`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Report Successful");
+        } else {
+          toast.error(data.message);
+        }
+      });
+  }
+
   return (
     <div className="container mx-auto px-5 py-14">
       <div className="grid grid-cols-12 md:gap-10">
@@ -75,6 +95,17 @@ const Brands = () => {
                 />
                 <h2 className="bg-primary text-white px-2 pt-[3px] pb-[5px] rounded-full inline text-xs absolute top-0 left-5 capitalize">
                   {product?.brand}
+                </h2>
+                <h2
+                  onClick={() => {
+                    handleReport(product);
+                  }}
+                  className="bg-gray-300 flex items-center cursor-pointer text-black px-2 pt-[3px] pb-[5px] rounded-full text-xs absolute bottom-5 right-4 capitalize"
+                >
+                  <span className="">
+                    <MdReportGmailerrorred></MdReportGmailerrorred>
+                  </span>
+                  <span className="ml-1">Report To Admin</span>
                 </h2>
               </div>
 

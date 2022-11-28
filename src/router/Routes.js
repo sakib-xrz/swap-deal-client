@@ -3,6 +3,7 @@ import Brands from "../components/Brands/Brands";
 import Error from "../components/Error/Error";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
+import Blog from "../Page/Blog/Blog";
 import AddProduct from "../Page/Dashboard/AddProduct";
 import AllBuyers from "../Page/Dashboard/AllBuyers";
 import AllSellers from "../Page/Dashboard/AllSellers";
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home></Home>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/signup",
