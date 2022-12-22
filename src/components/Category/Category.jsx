@@ -13,7 +13,7 @@ const Category = () => {
     axios
       .get("https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/brands")
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         setBrands(response.data);
       });
   }, []);

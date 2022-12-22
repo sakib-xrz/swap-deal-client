@@ -19,7 +19,7 @@ const Advertise = () => {
     },
   });
 
-  console.log(advertisedProducts);
+  // console.log(advertisedProducts);
 
   if (advertisedProducts.length === 0) {
     return <></>;

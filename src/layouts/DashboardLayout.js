@@ -10,13 +10,13 @@ import useSeller from "../hooks/useSeller";
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
-  console.log("admin", isAdmin);
+  // console.log("admin", isAdmin);
 
   const [isBuyer] = useBuyer(user?.email);
-  console.log("buyer", isBuyer);
+  // console.log("buyer", isBuyer);
 
   const [isSeller] = useSeller(user?.email);
-  console.log("seller", isSeller);
+  // console.log("seller", isSeller);
 
   return (
     <div>
@@ -60,9 +60,9 @@ const DashboardLayout = () => {
                 <li className="text-primary rounded-md bg-white">
                   <Link to="/dashboard/all-sellers">All Sellers</Link>
                 </li>
-                <li className="text-primary rounded-md bg-white">
+                {/* <li className="text-primary rounded-md bg-white">
                   <Link to="/dashboard/reported-items">Reported Items</Link>
-                </li>
+                </li> */}
               </>
             )}
           </ul>

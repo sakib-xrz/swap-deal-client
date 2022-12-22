@@ -9,7 +9,7 @@ import Modal from "./Modal";
 const Brands = () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   const products = useLoaderData();
-  console.log(products);
+  // console.log(products);
   const [booking, setBooking] = useState(null);
   const { user } = useContext(AuthContext);
 
@@ -54,27 +54,27 @@ const Brands = () => {
       });
   };
 
-  const handleReport = (product) => {
-    fetch(
-      `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/reported-items`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(product),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          toast.success("Report Successful");
-        } else {
-          toast.error(data.message);
-        }
-      });
-  };
+  // const handleReport = (product) => {
+  //   fetch(
+  //     `https://swap-deal-server-pblnsdizd-sakib-xrz.vercel.app/reported-items`,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify(product),
+  //     }
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.log(data);
+  //       if (data.acknowledged) {
+  //         toast.success("Report Successful");
+  //       } else {
+  //         toast.error(data.message);
+  //       }
+  //     });
+  // };
 
   return (
     <div className="container mx-auto px-5 py-14">
@@ -99,7 +99,7 @@ const Brands = () => {
                 <h2 className="bg-primary text-white px-2 pt-[3px] pb-[5px] rounded-full inline text-xs absolute top-0 left-5 capitalize">
                   {product?.brand}
                 </h2>
-                <h2
+                {/* <h2
                   onClick={() => {
                     handleReport(product);
                   }}
@@ -109,7 +109,7 @@ const Brands = () => {
                     <MdReportGmailerrorred></MdReportGmailerrorred>
                   </span>
                   <span className="ml-1">Report To Admin</span>
-                </h2>
+                </h2> */}
               </div>
 
               <div className="border-t-2 px-4 pt-2 flex items-center justify-between">
